@@ -1,21 +1,26 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from "firebase/auth";          // Idinagdag para sa Authentication
+import { getFirestore } from "firebase/firestore"; // Idinagdag para sa Firestore Database
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Dynamic na nanggagaling sa iyong .env file gamit ang Vite syntax
 const firebaseConfig = {
-  apiKey: "AIzaSyC4alJ4EwWvkypjQRgmuABGkQqK3deGhDg",
-  authDomain: "food-ordering-3b775.firebaseapp.com",
-  projectId: "food-ordering-3b775",
-  storageBucket: "food-ordering-3b775.firebasestorage.app",
-  messagingSenderId: "1012287372956",
-  appId: "1:1012287372956:web:33df54fcb18b5106157759",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: "G-KGEMNP9THF"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+// I-export ang mga instances para magamit sa productService at auth files
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+
+export default app;
