@@ -1,35 +1,38 @@
-function Home() {
+import CategoryCard from "../components/CategoryCard";
+import ProductCard from "../components/ProductCard";
+import "./Home.css";
+
+export default function Home() {
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold text-gray-800">
-        Welcome 👋
-      </h1>
+    <div className="home">
 
-      <p className="text-gray-500 mt-2">
-        Order your favorite food easily
-      </p>
+      <section className="hero">
+        <h1>Order Your Favorite Food 🍕</h1>
+        <p>Fast delivery, fresh meals, anytime anywhere</p>
+      </section>
 
-      <div className="grid grid-cols-2 gap-4 mt-6">
-        <div className="bg-white p-4 rounded-xl shadow">
-          🍔 Burgers
+      <section>
+        <h2 className="section-title">Categories</h2>
+
+        <div className="category-grid">
+          <CategoryCard name="Burger 🍔" />
+          <CategoryCard name="Pizza 🍕" />
+          <CategoryCard name="Chicken 🍗" />
+          <CategoryCard name="Drinks 🥤" />
         </div>
+      </section>
 
-        <div className="bg-white p-4 rounded-xl shadow">
-          🍕 Pizza
+      <section>
+        <h2 className="section-title">Popular Foods</h2>
+
+        <div className="product-grid">
+          <ProductCard name="Cheese Burger" price="120" />
+          <ProductCard name="Pepperoni Pizza" price="250" />
+          <ProductCard name="Fried Chicken" price="180" />
+          <ProductCard name="Iced Coffee" price="90" />
         </div>
+      </section>
 
-        <div className="bg-white p-4 rounded-xl shadow">
-          ☕ Coffee
-        </div>
-
-        <div className="bg-white p-4 rounded-xl shadow">
-          🍗 Chicken
-        </div>
-      </div>
-
-      <button className="mt-6 w-full bg-blue-600 text-white p-3 rounded-xl">
-        View Menu
-      </button>
     </div>
-  )
+  );
 }

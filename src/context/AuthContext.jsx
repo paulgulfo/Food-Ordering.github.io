@@ -9,6 +9,7 @@ import { auth } from "../firebase/config"
 
 const AuthContext = createContext()
 
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -27,9 +28,22 @@ export function AuthProvider({ children }) {
   }
 
   // Login
-  const login = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password)
+  const login = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    return userCredential;
+  } catch (err) {
+    console.error("Firebase Login Error:", err);
+    console.error("Code:", err.code);
+    console.error("Message:", err.message);
+    throw err;
   }
+};
 
   // Logout
   const logout = () => {

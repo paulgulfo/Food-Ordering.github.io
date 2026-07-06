@@ -1,21 +1,24 @@
-import { useCart } from "../context/CartContext"
+import "./ProductCard.css";
+import { useCart } from "../context/CartContext";
 
 export default function ProductCard({ id, name, price }) {
-  const { addToCart } = useCart()
+  const { addToCart } = useCart();
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow">
-      <div className="h-24 bg-gray-200 rounded mb-3"></div>
+    <div className="product-card">
 
-      <h3 className="font-semibold">{name}</h3>
-      <p className="text-blue-600 font-bold">₱{price}</p>
+      <div className="product-image"></div>
+
+      <h3>{name}</h3>
+
+      <p className="price">₱{price}</p>
 
       <button
         onClick={() => addToCart({ id, name, price })}
-        className="mt-3 w-full bg-blue-500 text-white py-2 rounded"
       >
         Add to Cart
       </button>
+
     </div>
-  )
+  );
 }
